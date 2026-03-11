@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #050A18;
+    color: #f0ece4;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(201, 168, 76, 0.25);
+    color: #E2C97E;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050A18;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C9A84C;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-gold text-xs tracking-[0.3em] uppercase font-body font-medium;
+  }
+
+  .gold-line {
+    @apply block h-px bg-gradient-to-r from-gold via-gold-light to-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:border-gold/40 hover:-translate-y-1;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 bg-gold text-navy font-body font-medium text-xs tracking-widest uppercase px-7 py-3.5 rounded-sm transition-all duration-300 hover:bg-gold-light hover:gap-3;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 border border-gold/40 text-gold font-body font-medium text-xs tracking-widest uppercase px-7 py-3.5 rounded-sm transition-all duration-300 hover:border-gold hover:bg-gold/5 hover:gap-3;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C9A84C 0%, #E2C97E 50%, #C9A84C 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 160px;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+}
+
+/* Cursor dot */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: #C9A84C;
+  border-radius: 50%;
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
